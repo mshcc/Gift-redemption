@@ -1,91 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siro.demo.mapper.ExchangeMapper">
-  <resultMap id="BaseResultMap" type="com.siro.demo.model.Exchange">
-    <!--@mbg.generated-->
-    <!--@Table exchange-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="giftid" jdbcType="INTEGER" property="giftid" />
-    <result column="cardid" jdbcType="INTEGER" property="cardid" />
-    <result column="redemption" jdbcType="DATE" property="redemption" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, giftid, cardid, redemption
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from exchange
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from exchange
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.siro.demo.model.Exchange">
-    <!--@mbg.generated-->
-    insert into exchange (id, giftid, cardid, 
-      redemption)
-    values (#{id,jdbcType=INTEGER}, #{giftid,jdbcType=INTEGER}, #{cardid,jdbcType=INTEGER}, 
-      #{redemption,jdbcType=DATE})
-  </insert>
-  <insert id="insertSelective" parameterType="com.siro.demo.model.Exchange">
-    <!--@mbg.generated-->
-    insert into exchange
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="giftid != null">
-        giftid,
-      </if>
-      <if test="cardid != null">
-        cardid,
-      </if>
-      <if test="redemption != null">
-        redemption,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="giftid != null">
-        #{giftid,jdbcType=INTEGER},
-      </if>
-      <if test="cardid != null">
-        #{cardid,jdbcType=INTEGER},
-      </if>
-      <if test="redemption != null">
-        #{redemption,jdbcType=DATE},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.siro.demo.model.Exchange">
-    <!--@mbg.generated-->
-    update exchange
-    <set>
-      <if test="giftid != null">
-        giftid = #{giftid,jdbcType=INTEGER},
-      </if>
-      <if test="cardid != null">
-        cardid = #{cardid,jdbcType=INTEGER},
-      </if>
-      <if test="redemption != null">
-        redemption = #{redemption,jdbcType=DATE},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.siro.demo.model.Exchange">
-    <!--@mbg.generated-->
-    update exchange
-    set giftid = #{giftid,jdbcType=INTEGER},
-      cardid = #{cardid,jdbcType=INTEGER},
-      redemption = #{redemption,jdbcType=DATE}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.siro.demo.model.Exchange">
+        <!--@mbg.generated-->
+        <!--@Table exchange-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="giftid" jdbcType="INTEGER" property="giftid"/>
+        <result column="cardid" jdbcType="INTEGER" property="cardid"/>
+        <result column="redemption" jdbcType="DATE" property="redemption"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, giftid, cardid, redemption
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from exchange
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from exchange
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.siro.demo.model.Exchange">
+        <!--@mbg.generated-->
+        insert into exchange (id, giftid, cardid,
+                              redemption)
+        values (#{id,jdbcType=INTEGER}, #{giftid,jdbcType=INTEGER}, #{cardid,jdbcType=INTEGER},
+                #{redemption,jdbcType=DATE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.siro.demo.model.Exchange">
+        <!--@mbg.generated-->
+        insert into exchange
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="giftid != null">
+                giftid,
+            </if>
+            <if test="cardid != null">
+                cardid,
+            </if>
+            <if test="redemption != null">
+                redemption,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="giftid != null">
+                #{giftid,jdbcType=INTEGER},
+            </if>
+            <if test="cardid != null">
+                #{cardid,jdbcType=INTEGER},
+            </if>
+            <if test="redemption != null">
+                #{redemption,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.siro.demo.model.Exchange">
+        <!--@mbg.generated-->
+        update exchange
+        <set>
+            <if test="giftid != null">
+                giftid = #{giftid,jdbcType=INTEGER},
+            </if>
+            <if test="cardid != null">
+                cardid = #{cardid,jdbcType=INTEGER},
+            </if>
+            <if test="redemption != null">
+                redemption = #{redemption,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.siro.demo.model.Exchange">
+        <!--@mbg.generated-->
+        update exchange
+        set giftid     = #{giftid,jdbcType=INTEGER},
+            cardid     = #{cardid,jdbcType=INTEGER},
+            redemption = #{redemption,jdbcType=DATE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from exchange
+    </select>
+
+    <select id="findPageByDate" resultMap="BaseResultMap" parameterType="int">
+        select
+        <include refid="Base_Column_List"/>
+        from exchange
+        where date(redemption) &gt;= date_sub(curdate(), interval #{date} day)
+    </select>
 </mapper>

@@ -10,7 +10,7 @@ import java.util.Random;
 public class RandomStringUtils {
     static final String CHAR_SET = "0123456789ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz";
     static final Random RANDOM = new Random();
-    static String getString(Integer length) {
+    public static String getString(Integer length) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < length; i++) {
             stringBuilder.append(CHAR_SET.charAt(RANDOM.nextInt(CHAR_SET.length())));

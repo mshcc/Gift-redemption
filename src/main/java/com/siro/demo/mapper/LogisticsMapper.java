@@ -1,10 +1,15 @@
 package com.siro.demo.mapper;
 
 import com.siro.demo.model.Logistics;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface LogisticsMapper {
     /**
      * delete by primary key
+     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -12,6 +17,7 @@ public interface LogisticsMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
@@ -19,6 +25,7 @@ public interface LogisticsMapper {
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
@@ -26,6 +33,7 @@ public interface LogisticsMapper {
 
     /**
      * select by primary key
+     *
      * @param id primary key
      * @return object by primary key
      */
@@ -33,6 +41,7 @@ public interface LogisticsMapper {
 
     /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
@@ -40,8 +49,20 @@ public interface LogisticsMapper {
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */
     int updateByPrimaryKey(Logistics record);
+
+    List<Logistics> findPage();
+
+    List<Logistics> findPageByNotShipped();
+
+    List<Logistics> findPageShipped();
+
+    List<Logistics> findPageToBeCollected();
+
+    List<Logistics> findPageHasBeenSigned();
+
 }

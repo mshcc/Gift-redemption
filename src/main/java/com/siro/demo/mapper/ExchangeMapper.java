@@ -1,7 +1,10 @@
 package com.siro.demo.mapper;
 
 import com.siro.demo.model.Exchange;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface ExchangeMapper {
     /**
      * delete by primary key
@@ -44,4 +47,8 @@ public interface ExchangeMapper {
      * @return update count
      */
     int updateByPrimaryKey(Exchange record);
+
+    List<Exchange> findPage();
+
+    List<Exchange> findPageByDate(Integer date);
 }

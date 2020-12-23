@@ -1,6 +1,10 @@
 package com.siro.demo.service;
 
+import com.siro.demo.model.Category;
 import com.siro.demo.model.Picture;
+
+import java.util.List;
+
 public interface PictureService{
 
 
@@ -15,5 +19,7 @@ public interface PictureService{
     int updateByPrimaryKeySelective(Picture record);
 
     int updateByPrimaryKey(Picture record);
+
+    List<Picture> findPictureByCategoryAndCategoryId(Category category);
 
 }

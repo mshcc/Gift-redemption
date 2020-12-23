@@ -22,7 +22,7 @@ public class Role {
     */
     @ApiModelProperty(value="权限名")
     private String name;
-   
+
     /**
     * 权限描述
     */

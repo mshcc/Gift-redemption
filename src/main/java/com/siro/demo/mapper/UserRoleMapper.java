@@ -1,7 +1,11 @@
 package com.siro.demo.mapper;
 
 import com.siro.demo.model.UserRole;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface UserRoleMapper {
     /**
      * delete by primary key
@@ -44,4 +48,6 @@ public interface UserRoleMapper {
      * @return update count
      */
     int updateByPrimaryKey(UserRole record);
+
+    List<Integer> findRolesByUserId(Integer id);
 }

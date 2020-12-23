@@ -1,10 +1,16 @@
 package com.siro.demo.service.impl;
 
+import com.siro.demo.utils.page.MybatisPageHelper;
+import com.siro.demo.utils.page.PageRequest;
+import com.siro.demo.utils.page.PageResult;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.siro.demo.mapper.RoleMapper;
 import com.siro.demo.model.Role;
 import com.siro.demo.service.RoleService;
+
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService{
 
@@ -39,6 +45,11 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public int updateByPrimaryKey(Role record) {
         return roleMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return MybatisPageHelper.findPage(pageRequest,roleMapper);
     }
 
 }

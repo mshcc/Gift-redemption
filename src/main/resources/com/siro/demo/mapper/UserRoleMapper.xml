@@ -77,4 +77,8 @@
       roleid = #{roleid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findRolesByUserId" resultType="java.lang.Integer" parameterType="int">
+    select roleid from user_role where userid=#{id}
+  </select>
 </mapper>

@@ -1,7 +1,10 @@
 package com.siro.demo.mapper;
 
 import com.siro.demo.model.User;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+@Mapper
 public interface UserMapper {
     /**
      * delete by primary key
@@ -44,4 +47,10 @@ public interface UserMapper {
      * @return update count
      */
     int updateByPrimaryKey(User record);
+
+    List<User> findPage();
+
+    List<User> findPageByCreationTime(Integer date);
+
+    User findByName(String name);
 }

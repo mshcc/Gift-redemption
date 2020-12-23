@@ -1,12 +1,18 @@
 package com.siro.demo.service.impl;
 
+import com.siro.demo.model.Category;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import com.siro.demo.model.Picture;
 import com.siro.demo.mapper.PictureMapper;
 import com.siro.demo.service.PictureService;
+
+import java.util.List;
+
 @Service
-public class PictureServiceImpl implements PictureService{
+public class PictureServiceImpl implements PictureService {
 
     @Resource
     private PictureMapper pictureMapper;
@@ -40,5 +46,11 @@ public class PictureServiceImpl implements PictureService{
     public int updateByPrimaryKey(Picture record) {
         return pictureMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Picture> findPictureByCategoryAndCategoryId(Category category) {
+        return pictureMapper.findPictureByCategoryAndCategoryId(category);
+    }
+
 
 }

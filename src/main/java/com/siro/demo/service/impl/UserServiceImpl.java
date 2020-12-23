@@ -1,16 +1,29 @@
 package com.siro.demo.service.impl;
 
+import com.siro.demo.mapper.RoleMapper;
+import com.siro.demo.mapper.UserRoleMapper;
+import com.siro.demo.utils.page.MybatisPageHelper;
+import com.siro.demo.utils.page.PageRequest;
+import com.siro.demo.utils.page.PageResult;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.siro.demo.model.User;
 import com.siro.demo.mapper.UserMapper;
 import com.siro.demo.service.UserService;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class UserServiceImpl implements UserService{
 
     @Resource
     private UserMapper userMapper;
-
+    @Resource
+    private UserRoleMapper userRoleMapper;
+    @Resource
+    private RoleMapper roleMapper;
     @Override
     public int deleteByPrimaryKey(Integer id) {
         return userMapper.deleteByPrimaryKey(id);
@@ -41,4 +54,25 @@ public class UserServiceImpl implements UserService{
         return userMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return MybatisPageHelper.findPage(pageRequest,userMapper);
+    }
+
+    @Override
+    public PageResult findPageByCreationTime(PageRequest pageRequest) {
+        return MybatisPageHelper.findPage(pageRequest,userMapper,"findPageByCreationTime");
+    }
+
+    @Override
+    public User findByName(String name) {
+        return userMapper.findByName(name);
+    }
+
+    @Override
+    public Set<String> findPermissions(String name) {
+        List<Integer> roles = userRoleMapper.findRolesByUserId(userMapper.findByName(name).getId());
+        List<String> strings = roleMapper.selectByIds(roles);
+        return new HashSet<>(strings);
+    }
 }

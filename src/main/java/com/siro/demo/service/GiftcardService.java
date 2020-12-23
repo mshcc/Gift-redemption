@@ -1,7 +1,10 @@
 package com.siro.demo.service;
 
 import com.siro.demo.model.Giftcard;
-public interface GiftcardService{
+import com.siro.demo.utils.page.PageRequest;
+import com.siro.demo.utils.page.PageResult;
+
+public interface GiftcardService {
 
 
     int deleteByPrimaryKey(Integer id);
@@ -15,5 +18,12 @@ public interface GiftcardService{
     int updateByPrimaryKeySelective(Giftcard record);
 
     int updateByPrimaryKey(Giftcard record);
+
+    PageResult findPage(PageRequest pageRequest);
+
+    PageResult findPageExpired(PageRequest pageRequest);
+
+    PageResult findPageWorks(PageRequest pageRequest);
+
 
 }

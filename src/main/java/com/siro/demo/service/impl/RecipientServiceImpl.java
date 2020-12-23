@@ -1,5 +1,8 @@
 package com.siro.demo.service.impl;
 
+import com.siro.demo.utils.page.MybatisPageHelper;
+import com.siro.demo.utils.page.PageRequest;
+import com.siro.demo.utils.page.PageResult;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.siro.demo.model.Recipient;
@@ -39,6 +42,11 @@ public class RecipientServiceImpl implements RecipientService{
     @Override
     public int updateByPrimaryKey(Recipient record) {
         return recipientMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return MybatisPageHelper.findPage(pageRequest,recipientMapper);
     }
 
 }
