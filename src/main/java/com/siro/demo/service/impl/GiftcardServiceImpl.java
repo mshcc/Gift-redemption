@@ -11,6 +11,8 @@ import com.siro.demo.model.Giftcard;
 import com.siro.demo.mapper.GiftcardMapper;
 import com.siro.demo.service.GiftcardService;
 
+import java.util.List;
+
 @Service
 public class GiftcardServiceImpl implements GiftcardService {
 
@@ -60,6 +62,16 @@ public class GiftcardServiceImpl implements GiftcardService {
     @Override
     public PageResult findPageWorks(PageRequest pageRequest) {
         return MybatisPageHelper.findPage(pageRequest, giftcardMapper, "findPageWorks");
+    }
+
+    @Override
+    public Giftcard findByName(String name) {
+        return giftcardMapper.findByName(name);
+    }
+
+    @Override
+    public int insertList(List<Giftcard> cards) {
+        return giftcardMapper.insertList(cards);
     }
 
 }

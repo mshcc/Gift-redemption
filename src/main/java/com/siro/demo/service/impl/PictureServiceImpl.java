@@ -52,5 +52,10 @@ public class PictureServiceImpl implements PictureService {
         return pictureMapper.findPictureByCategoryAndCategoryId(category);
     }
 
+    @Override
+    public int deleteByRangeId(Integer id) {
+        return pictureMapper.deleteByRangeId(id);
+    }
+
 
 }

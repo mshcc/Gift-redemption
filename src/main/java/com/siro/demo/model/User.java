@@ -2,6 +2,8 @@ package com.siro.demo.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
     @ApiModelProperty(value="")
     private Integer id;
 
@@ -29,12 +31,6 @@ public class User {
     */
     @ApiModelProperty(value="密码")
     private String password;
-
-    /**
-    * 盐，用于加密
-    */
-    @ApiModelProperty(value="盐，用于加密")
-    private String salt;
 
     /**
     * 状态

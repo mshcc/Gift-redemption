@@ -2,6 +2,7 @@ package com.siro.demo.mapper;
 
 import com.siro.demo.model.Category;
 import com.siro.demo.model.Picture;
+import com.siro.demo.vo.IntegerBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -57,4 +58,7 @@ public interface PictureMapper {
     int updateByPrimaryKey(Picture record);
 
     List<Picture> findPictureByCategoryAndCategoryId(Category category);
+
+    int deleteByRangeId(Integer id);
+
 }

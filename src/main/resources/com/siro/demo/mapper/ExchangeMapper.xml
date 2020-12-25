@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siro.demo.mapper.ExchangeMapper">
+    <cache type="com.siro.demo.utils.RedisCache"/>
     <resultMap id="BaseResultMap" type="com.siro.demo.model.Exchange">
         <!--@mbg.generated-->
         <!--@Table exchange-->
@@ -26,14 +27,16 @@
         from exchange
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.siro.demo.model.Exchange">
+    <insert id="insert" parameterType="com.siro.demo.model.Exchange" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
         <!--@mbg.generated-->
         insert into exchange (id, giftid, cardid,
                               redemption)
         values (#{id,jdbcType=INTEGER}, #{giftid,jdbcType=INTEGER}, #{cardid,jdbcType=INTEGER},
                 #{redemption,jdbcType=DATE})
     </insert>
-    <insert id="insertSelective" parameterType="com.siro.demo.model.Exchange">
+    <insert id="insertSelective" parameterType="com.siro.demo.model.Exchange" useGeneratedKeys="true" keyColumn="id"
+            keyProperty="id">
         <!--@mbg.generated-->
         insert into exchange
         <trim prefix="(" suffix=")" suffixOverrides=",">

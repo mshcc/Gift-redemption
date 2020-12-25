@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siro.demo.mapper.UserMapper">
+    <cache type="com.siro.demo.utils.RedisCache"/>
+
     <resultMap id="BaseResultMap" type="com.siro.demo.model.User">
         <!--@mbg.generated-->
         <!--@Table `user`-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="salt" jdbcType="VARCHAR" property="salt"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="creationtime" jdbcType="DATE" property="creationtime"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, username, `password`, salt, `status`, creationtime
+        id, username, `password`, `status`, creationtime
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -31,9 +32,9 @@
     <insert id="insert" parameterType="com.siro.demo.model.User">
         <!--@mbg.generated-->
         insert into `user` (id, username, `password`,
-                            salt, `status`, creationtime)
+                             `status`, creationtime)
         values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-                #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{creationtime,jdbcType=DATE})
+                 #{status,jdbcType=INTEGER}, #{creationtime,jdbcType=DATE})
     </insert>
     <insert id="insertSelective" parameterType="com.siro.demo.model.User">
         <!--@mbg.generated-->
@@ -47,9 +48,6 @@
             </if>
             <if test="password != null">
                 `password`,
-            </if>
-            <if test="salt != null">
-                salt,
             </if>
             <if test="status != null">
                 `status`,
@@ -67,9 +65,6 @@
             </if>
             <if test="password != null">
                 #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="salt != null">
-                #{salt,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -89,9 +84,6 @@
             <if test="password != null">
                 `password` = #{password,jdbcType=VARCHAR},
             </if>
-            <if test="salt != null">
-                salt = #{salt,jdbcType=VARCHAR},
-            </if>
             <if test="status != null">
                 `status` = #{status,jdbcType=INTEGER},
             </if>
@@ -106,7 +98,6 @@
         update `user`
         set username     = #{username,jdbcType=VARCHAR},
             `password`   = #{password,jdbcType=VARCHAR},
-            salt         = #{salt,jdbcType=VARCHAR},
             `status`     = #{status,jdbcType=INTEGER},
             creationtime = #{creationtime,jdbcType=DATE}
         where id = #{id,jdbcType=INTEGER}

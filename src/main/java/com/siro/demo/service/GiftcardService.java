@@ -4,6 +4,8 @@ import com.siro.demo.model.Giftcard;
 import com.siro.demo.utils.page.PageRequest;
 import com.siro.demo.utils.page.PageResult;
 
+import java.util.List;
+
 public interface GiftcardService {
 
 
@@ -25,5 +27,8 @@ public interface GiftcardService {
 
     PageResult findPageWorks(PageRequest pageRequest);
 
+    Giftcard findByName(String name);
+
+    int insertList(List<Giftcard> cards);
 
 }

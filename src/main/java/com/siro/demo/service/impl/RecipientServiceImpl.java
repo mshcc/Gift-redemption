@@ -4,12 +4,17 @@ import com.siro.demo.utils.page.MybatisPageHelper;
 import com.siro.demo.utils.page.PageRequest;
 import com.siro.demo.utils.page.PageResult;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import com.siro.demo.model.Recipient;
 import com.siro.demo.mapper.RecipientMapper;
 import com.siro.demo.service.RecipientService;
+
+import java.util.List;
+
 @Service
-public class RecipientServiceImpl implements RecipientService{
+public class RecipientServiceImpl implements RecipientService {
 
     @Resource
     private RecipientMapper recipientMapper;
@@ -46,7 +51,12 @@ public class RecipientServiceImpl implements RecipientService{
 
     @Override
     public PageResult findPage(PageRequest pageRequest) {
-        return MybatisPageHelper.findPage(pageRequest,recipientMapper);
+        return MybatisPageHelper.findPage(pageRequest, recipientMapper);
+    }
+
+    @Override
+    public List<Recipient> findListByName(String name) {
+        return recipientMapper.findListByName(name);
     }
 
 }

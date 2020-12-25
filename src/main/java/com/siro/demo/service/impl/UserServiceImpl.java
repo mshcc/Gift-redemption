@@ -5,18 +5,22 @@ import com.siro.demo.mapper.UserRoleMapper;
 import com.siro.demo.utils.page.MybatisPageHelper;
 import com.siro.demo.utils.page.PageRequest;
 import com.siro.demo.utils.page.PageResult;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.siro.demo.model.User;
 import com.siro.demo.mapper.UserMapper;
 import com.siro.demo.service.UserService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -75,4 +79,6 @@ public class UserServiceImpl implements UserService{
         List<String> strings = roleMapper.selectByIds(roles);
         return new HashSet<>(strings);
     }
+
+
 }

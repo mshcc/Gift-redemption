@@ -62,4 +62,8 @@ public interface GiftcardMapper {
     List<Giftcard> findPageExpired();
 
     List<Giftcard> findPageWorks();
+
+    Giftcard findByName(String name);
+
+    int insertList(List<Giftcard> cards);
 }

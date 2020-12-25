@@ -56,4 +56,6 @@ public interface RecipientMapper {
     int updateByPrimaryKey(Recipient record);
 
     List<Recipient> findPage();
+
+    List<Recipient> findListByName(String name);
 }

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siro.demo.mapper.LogisticsMapper">
+    <cache type="com.siro.demo.utils.RedisCache"/>
+
     <resultMap id="BaseResultMap" type="com.siro.demo.model.Logistics">
         <!--@mbg.generated-->
         <!--@Table logistics-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="gif_id" jdbcType="INTEGER" property="gifId"/>
-        <result column="giftid" jdbcType="INTEGER" property="giftid"/>
         <result column="recipientid" jdbcType="INTEGER" property="recipientid"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="exchangeid" jdbcType="INTEGER" property="exchangeid"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, gif_id, giftid, recipientid, `status`
+        id, gif_id, recipientid,exchangeid ,`status`
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         <!--@mbg.generated-->
@@ -29,10 +31,10 @@
     </delete>
     <insert id="insert" parameterType="com.siro.demo.model.Logistics">
         <!--@mbg.generated-->
-        insert into logistics (id, gif_id, giftid,
-                               recipientid, `status`)
-        values (#{id,jdbcType=INTEGER}, #{gifId,jdbcType=INTEGER}, #{giftid,jdbcType=INTEGER},
-                #{recipientid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+        insert into logistics (id, gif_id,
+                               recipientid, `status`, exchangeid)
+        values (#{id,jdbcType=INTEGER}, #{gifId,jdbcType=INTEGER},
+                #{recipientid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{exchangeid,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.siro.demo.model.Logistics">
         <!--@mbg.generated-->
@@ -44,14 +46,14 @@
             <if test="gifId != null">
                 gif_id,
             </if>
-            <if test="giftid != null">
-                giftid,
-            </if>
             <if test="recipientid != null">
                 recipientid,
             </if>
             <if test="status != null">
                 `status`,
+            </if>
+            <if test="exchangeid != null">
+                `exchangeid`,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -61,14 +63,14 @@
             <if test="gifId != null">
                 #{gifId,jdbcType=INTEGER},
             </if>
-            <if test="giftid != null">
-                #{giftid,jdbcType=INTEGER},
-            </if>
             <if test="recipientid != null">
                 #{recipientid,jdbcType=INTEGER},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeid != null">
+                #{exchangeid,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -79,14 +81,14 @@
             <if test="gifId != null">
                 gif_id = #{gifId,jdbcType=INTEGER},
             </if>
-            <if test="giftid != null">
-                giftid = #{giftid,jdbcType=INTEGER},
-            </if>
             <if test="recipientid != null">
                 recipientid = #{recipientid,jdbcType=INTEGER},
             </if>
             <if test="status != null">
                 `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="exchangeid != null">
+                exchangeid=#{exchangeid,jdbcType=INTEGER}
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -95,9 +97,9 @@
         <!--@mbg.generated-->
         update logistics
         set gif_id      = #{gifId,jdbcType=INTEGER},
-            giftid      = #{giftid,jdbcType=INTEGER},
             recipientid = #{recipientid,jdbcType=INTEGER},
-            `status`    = #{status,jdbcType=INTEGER}
+            `status`    = #{status,jdbcType=INTEGER},
+            exchangeid  =#{exchangeid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

@@ -26,5 +26,15 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   application:
     name: gift_first
+  redis:
+    database: 1
+    host: 116.63.144.75
+    port: 6379
 server:
   port: 8081
+
+mybatis:
+  configuration:
+    cache-enabled: true
+  type-aliases-package: com.siro.demo.model
+  mapper-locations: classpath:com/siro/demo/mapper/*/*.xml

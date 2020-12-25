@@ -22,4 +22,5 @@ public interface PictureService{
 
     List<Picture> findPictureByCategoryAndCategoryId(Category category);
 
+    int deleteByRangeId(Integer id);
 }

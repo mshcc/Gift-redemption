@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.siro.demo.mapper.GiftcardMapper">
+    <cache type="com.siro.demo.utils.RedisCache"/>
     <resultMap id="BaseResultMap" type="com.siro.demo.model.Giftcard">
         <!--@mbg.generated-->
         <!--@Table giftcard-->
@@ -131,4 +132,21 @@
         from giftcard
         where giftcard.status = 0
     </select>
+
+    <select id="findByName" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+        where cardnumber = #{name}
+    </select>
+
+    <insert id="insertList" parameterType="list">
+        insert into giftcard(cardnumber,cardsecret,creationtime,expiration) values
+        <foreach collection ="list" item="card" index= "index" separator =",">
+            (
+            #{card.cardnumber,jdbcType=VARCHAR}, #{card.cardsecret,jdbcType=VARCHAR},
+            #{card.creationtime,jdbcType=DATE}, #{card.expiration,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
 </mapper>

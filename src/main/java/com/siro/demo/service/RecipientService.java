@@ -22,4 +22,7 @@ public interface RecipientService{
     int updateByPrimaryKey(Recipient record);
 
     PageResult findPage(PageRequest pageRequest);
+
+    List<Recipient> findListByName(String name);
+
 }
