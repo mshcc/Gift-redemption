@@ -1,0 +1,61 @@
+spring:
+  session:
+    store-type: redis
+    redis:
+      flush-mode: on_save
+      namespace: spring:session
+  datasource:
+    name: druidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://116.63.144.75:3306/gift?useUnicode=true&useSSL=false
+      username: root
+      password: root123
+      #配置监控系统拦截的filters，wall用于防火墙
+      filters: stat,wall,log4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      #间隔多久进行检验，关闭空连接，单位是ms
+      time-between-eviction-runs-millis: 60000
+      #一个连接的最小存活时间，单位是ms
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: gift-producer
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        cluster-name: MyCluster
+server:
+  port: 8082
+  servlet:
+    session:
+      timeout: 30m
+
+
+mybatis:
+#  configuration:
+#    cache-enabled: true
+  type-aliases-package: com.siro.demo.model
+  mapper-locations: classpath:com/siro/demo/mapper/*/*.xml
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"
+
+#debug: true
