@@ -4,6 +4,7 @@ import com.siro.consumer.service.LogisiticService;
 import com.siro.http.HttpResult;
 import com.siro.page.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class LogisiticsController {
     public HttpResult listLogistics(@RequestBody PageRequest pageRequest){
         return logisiticService.listLogistics(pageRequest);
     }
-
+    @PreAuthorize("hasAuthority('super')")
     @PostMapping("deleteLogistics/{id}")
     public HttpResult deleteLogistics(@PathVariable int id){
         return logisiticService.deleteLogistics(id);

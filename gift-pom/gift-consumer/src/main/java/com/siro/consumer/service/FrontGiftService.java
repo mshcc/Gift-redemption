@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author mshcc
  * @date 2020/12/27
  */
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-front-producer")
 public interface FrontGiftService {
     @PostMapping("front/showGifts")
     public HttpResult listGifts(@RequestBody PageRequest pageRequest);

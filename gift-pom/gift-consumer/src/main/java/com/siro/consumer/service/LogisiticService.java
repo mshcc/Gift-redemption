@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author mshcc
  * @date 2020/12/27
  */
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-back-producer")
 public interface LogisiticService {
     @PostMapping("logisitics/listLogistics")
     public HttpResult listLogistics(@RequestBody PageRequest pageRequest);

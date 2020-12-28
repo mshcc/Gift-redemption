@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: gift-front-producer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        cluster-name: MyCluster
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://116.63.144.75:3306/gift?useUnicode=true&useSSL=false
+    username: root
+    password: root123
+server:
+  port: 8091

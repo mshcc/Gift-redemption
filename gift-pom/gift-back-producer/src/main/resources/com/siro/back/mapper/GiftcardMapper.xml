@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.siro.back.mapper.GiftcardMapper">
+    <cache type="com.siro.back.utils.RedisCache"/>
+    <resultMap id="BaseResultMap" type="com.siro.model.Giftcard">
+        <!--@mbg.generated-->
+        <!--@Table giftcard-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="cardnumber" jdbcType="VARCHAR" property="cardnumber"/>
+        <result column="cardsecret" jdbcType="VARCHAR" property="cardsecret"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="creationtime" jdbcType="DATE" property="creationtime"/>
+        <result column="expiration" jdbcType="DATE" property="expiration"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, cardnumber, cardsecret, `status`, creationtime, expiration
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from giftcard
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.siro.model.Giftcard">
+        <!--@mbg.generated-->
+        insert into giftcard (id, cardnumber, cardsecret,
+                              `status`, creationtime, expiration)
+        values (#{id,jdbcType=INTEGER}, #{cardnumber,jdbcType=VARCHAR}, #{cardsecret,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER}, #{creationtime,jdbcType=DATE}, #{expiration,jdbcType=DATE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.siro.model.Giftcard">
+        <!--@mbg.generated-->
+        insert into giftcard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="cardnumber != null">
+                cardnumber,
+            </if>
+            <if test="cardsecret != null">
+                cardsecret,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="creationtime != null">
+                creationtime,
+            </if>
+            <if test="expiration != null">
+                expiration,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="cardnumber != null">
+                #{cardnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cardsecret != null">
+                #{cardsecret,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="creationtime != null">
+                #{creationtime,jdbcType=DATE},
+            </if>
+            <if test="expiration != null">
+                #{expiration,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.siro.model.Giftcard">
+        <!--@mbg.generated-->
+        update giftcard
+        <set>
+            <if test="cardnumber != null">
+                cardnumber = #{cardnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="cardsecret != null">
+                cardsecret = #{cardsecret,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="creationtime != null">
+                creationtime = #{creationtime,jdbcType=DATE},
+            </if>
+            <if test="expiration != null">
+                expiration = #{expiration,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.siro.model.Giftcard">
+        <!--@mbg.generated-->
+        update giftcard
+        set cardnumber   = #{cardnumber,jdbcType=VARCHAR},
+            cardsecret   = #{cardsecret,jdbcType=VARCHAR},
+            `status`     = #{status,jdbcType=INTEGER},
+            creationtime = #{creationtime,jdbcType=DATE},
+            expiration   = #{expiration,jdbcType=DATE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+    </select>
+
+    <select id="findPageExpired" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+        where giftcard.status &gt; 0
+    </select>
+
+    <select id="findPageWorks" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+        where giftcard.status = 0
+    </select>
+
+    <select id="findByName" resultMap="BaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"/>
+        from giftcard
+        where cardnumber = #{name}
+    </select>
+
+    <insert id="insertList" parameterType="list">
+        insert into giftcard(cardnumber,cardsecret,creationtime,expiration) values
+        <foreach collection ="list" item="card" index= "index" separator =",">
+            (
+            #{card.cardnumber,jdbcType=VARCHAR}, #{card.cardsecret,jdbcType=VARCHAR},
+            #{card.creationtime,jdbcType=DATE}, #{card.expiration,jdbcType=DATE}
+            )
+        </foreach>
+    </insert>
+</mapper>

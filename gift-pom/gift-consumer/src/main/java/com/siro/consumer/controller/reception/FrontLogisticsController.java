@@ -3,16 +3,14 @@ package com.siro.consumer.controller.reception;
 import com.siro.consumer.service.FrontLogisticsService;
 import com.siro.http.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author mshcc
  * @date 2020/12/27
  */
 @RestController
+@RequestMapping("front")
 public class FrontLogisticsController {
     @Autowired
     private FrontLogisticsService frontLogisticsService;

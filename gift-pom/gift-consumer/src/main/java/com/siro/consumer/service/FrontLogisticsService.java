@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-front-producer")
 public interface FrontLogisticsService {
     @PostMapping("front/addLogistic/{exchangeId}")
     public HttpResult addLogistic(@RequestParam int giftId,

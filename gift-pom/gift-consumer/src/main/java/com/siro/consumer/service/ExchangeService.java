@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @date 2020/12/27
  */
 
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-back-producer")
 public interface ExchangeService {
     @PostMapping("exchange/listExchanges")
     public HttpResult listExchanges(@RequestBody PageRequest pageRequest);

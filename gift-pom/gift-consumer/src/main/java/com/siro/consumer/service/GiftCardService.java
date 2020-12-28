@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-back-producer")
 public interface GiftCardService {
     @PostMapping("giftCard/addGiftCard")
     public HttpResult addGiftCard(@RequestParam("num") int num);

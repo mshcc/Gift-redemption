@@ -18,13 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author mshcc
  * @date 2020/12/27
  */
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-back-producer")
 public interface UserService {
     @GetMapping("captcha.jpg")
     String captcha(@RequestParam HttpServletResponse response, @RequestParam HttpServletRequest request);
 
-    @PostMapping("login")
-    public HttpResult login(@RequestBody UserBean userBean, @RequestParam HttpServletRequest request);
+//    @PostMapping("login")
+//    public HttpResult login(@RequestBody UserBean userBean, @RequestParam HttpServletRequest request);
 
     @PostMapping("registerUser")
     public HttpResult register(@RequestBody UserBean userBean, @RequestParam HttpServletRequest request);

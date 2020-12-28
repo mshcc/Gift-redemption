@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2020/12/27
  */
 @RestController
+@RequestMapping("front")
 public class FrontGiftController {
     @Autowired
     private FrontGiftService frontGiftService;

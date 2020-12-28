@@ -5,6 +5,7 @@ import com.siro.http.HttpResult;
 import com.siro.page.PageRequest;
 import com.siro.vo.RecipientBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class RecipientController {
         return recipientService.getRecipientById(id);
     }
 
-
+    @PreAuthorize("hasAuthority('super')")
     @PostMapping("updateRecipirnt/{id}")
     public HttpResult updateRecipients(@RequestBody RecipientBean recipientBean, @PathVariable int id){
         return recipientService.updateRecipients(recipientBean,id);

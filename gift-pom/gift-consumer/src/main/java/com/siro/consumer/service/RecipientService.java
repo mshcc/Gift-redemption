@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "gift-producer")
+@FeignClient(name = "gift-back-producer")
 public interface RecipientService {
     @PostMapping("recipient/listRecipients")
     public HttpResult listRecipients(@RequestBody PageRequest pageRequest);
